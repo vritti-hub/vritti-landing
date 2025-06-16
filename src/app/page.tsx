@@ -1,172 +1,142 @@
 'use client';
 
-import { Button } from 'quantum-ui/Button';
-import { Paper } from 'quantum-ui/Paper';
-import { TextField } from 'quantum-ui/TextField';
-import { Typography } from 'quantum-ui/Typography';
-import { useState } from 'react';
+import Hero from '@/components/sections/Hero';
+import PainPoints from '@/components/sections/PainPoints';
+import SolutionOverview from '@/components/sections/SolutionOverview';
+import IndustryCards from '@/components/sections/IndustryCards';
+import CTASection from '@/components/sections/CTASection';
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Vritti AI",
+  "description": "AI Business Operating System for Small Businesses",
+  "url": "https://vritti.ai",
+  "logo": "https://vritti.ai/logo.png",
+  "foundingDate": "2024",
+  "founder": {
+    "@type": "Person",
+    "name": "Vritti AI Team"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "San Francisco",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+1234567890",
+    "contactType": "customer service",
+    "availableLanguage": "English"
+  },
+  "sameAs": [
+    "https://twitter.com/vrittiAI",
+    "https://linkedin.com/company/vritti-ai"
+  ]
+};
+
+const softwareApplicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Vritti AI Business Operating System",
+  "description": "AI-powered business operating system that transforms small business operations through WhatsApp integration and intelligent automation",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web-based, iOS, Android",
+  "offers": {
+    "@type": "Offer",
+    "price": "114",
+    "priceCurrency": "USD",
+    "priceSpecification": {
+      "@type": "RecurringPriceSpecification",
+      "billingDuration": "P1M",
+      "billingIncrement": 1
+    }
+  },
+  "featureList": [
+    "Smart Scheduling",
+    "Customer Intelligence", 
+    "Inventory Tracking",
+    "Financial Intelligence",
+    "AI Assistant",
+    "WhatsApp Integration"
+  ],
+  "author": {
+    "@type": "Organization",
+    "name": "Vritti AI"
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Vritti AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vritti AI is an AI-powered business operating system designed for small businesses. It replaces WhatsApp chaos with intelligent automation, providing enterprise-grade business intelligence through a simple conversational interface."
+      }
+    },
+    {
+      "@type": "Question", 
+      "name": "Do I need technical knowledge to use Vritti AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No technical knowledge is required. Setup is completely conversational - you simply tell the AI about your business, and it automatically configures everything for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does Vritti AI cost?",
+      "acceptedAnswer": {
+        "@type": "Answer", 
+        "text": "Vritti AI costs $114/month which includes everything: $99 for AI + ~$15 for hosting. Additional business locations are $29/month each. No hidden fees, no contracts."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which types of businesses can use Vritti AI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Vritti AI is built for service-based small businesses including salons & spas, restaurants, medical clinics, driving schools, fitness centers, and retail stores."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does WhatsApp integration work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Customers continue using WhatsApp to contact your business. The AI automatically handles bookings, inquiries, and follow-ups through your existing WhatsApp number. No app downloads required for customers."
+      }
+    }
+  ]
+};
 
 export default function Home() {
-  const [email, setEmail] = useState('');
-  const [name, setName] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', { email, name });
-  };
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <Paper variant="standard" sx={{ py: 8, px: 4, textAlign: 'center', backgroundColor: 'background.default' }}>
-        <Typography variant="h1" sx={{ mb: 3, color: 'primary.main' }}>
-          Vritti AI
-        </Typography>
-        <Typography variant="h2" sx={{ mb: 4, maxWidth: '800px', mx: 'auto', color: 'text.primary' }}>
-          Transform Your Business with Intelligent AI Solutions
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 6, maxWidth: '600px', mx: 'auto', color: 'text.secondary' }}>
-          Harness the power of cutting-edge artificial intelligence to automate processes, 
-          gain deep insights, and unlock unprecedented growth for your organization.
-        </Typography>
-        <Button 
-          intent="primary" 
-          size="large"
-        >
-          Get Started Today
-        </Button>
-      </Paper>
+    <>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
 
-      {/* Features Section */}
-      <Paper variant="standard" sx={{ py: 8, px: 4, backgroundColor: 'background.paper' }}>
-        <Typography variant="h2" sx={{ textAlign: 'center', mb: 6, color: 'text.primary' }}>
-          Why Choose Vritti AI?
-        </Typography>
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-          <Paper variant="elevated" sx={{ p: 4, textAlign: 'center' }}>
-            <Typography variant="h3" sx={{ mb: 2, color: 'primary.main' }}>
-              🚀 Advanced Automation
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-              Streamline complex workflows and eliminate repetitive tasks with our intelligent automation platform.
-            </Typography>
-          </Paper>
-
-          <Paper variant="elevated" sx={{ p: 4, textAlign: 'center' }}>
-            <Typography variant="h3" sx={{ mb: 2, color: 'primary.main' }}>
-              📊 Data-Driven Insights
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-              Transform raw data into actionable intelligence with our powerful analytics and machine learning models.
-            </Typography>
-          </Paper>
-
-          <Paper variant="elevated" sx={{ p: 4, textAlign: 'center' }}>
-            <Typography variant="h3" sx={{ mb: 2, color: 'primary.main' }}>
-              🔧 Easy Integration
-            </Typography>
-            <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-              Seamlessly integrate with your existing systems through our robust APIs and flexible deployment options.
-            </Typography>
-          </Paper>
-        </div>
-      </Paper>
-
-      {/* Benefits Section */}
-      <Paper variant="standard" sx={{ py: 8, px: 4, backgroundColor: 'background.default' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '3rem', alignItems: 'center' }}>
-          <div>
-            <Typography variant="h2" sx={{ mb: 4, color: 'text.primary' }}>
-              Unlock Your Business Potential
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3, color: 'text.secondary' }}>
-              • <strong>Increase Efficiency:</strong> Reduce manual work by up to 70% with intelligent automation
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3, color: 'text.secondary' }}>
-              • <strong>Enhanced Decision Making:</strong> Make data-driven decisions with real-time insights
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 3, color: 'text.secondary' }}>
-              • <strong>Scalable Solutions:</strong> Grow your AI capabilities as your business expands
-            </Typography>
-            <Typography variant="body1" sx={{ mb: 4, color: 'text.secondary' }}>
-              • <strong>24/7 Support:</strong> Our expert team ensures smooth operations around the clock
-            </Typography>
-            <Button intent="secondary" size="large">
-              Learn More
-            </Button>
-          </div>
-          
-          <Paper variant="glass" sx={{ p: 1, backgroundColor: 'background.paper' }}>
-            <div style={{ 
-              height: '300px', 
-              backgroundColor: '#f0f9ff', 
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '2px dashed #3b82f6'
-            }}>
-              <Typography variant="h3" sx={{ color: 'primary.main' }}>
-                AI Dashboard Preview
-              </Typography>
-            </div>
-          </Paper>
-        </div>
-      </Paper>
-
-      {/* Contact Form Section */}
-      <Paper variant="standard" sx={{ py: 8, px: 4, backgroundColor: 'background.paper' }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
-          <Typography variant="h2" sx={{ mb: 4, color: 'text.primary' }}>
-            Ready to Transform Your Business?
-          </Typography>
-          <Typography variant="body1" sx={{ mb: 6, color: 'text.secondary' }}>
-            Get started with a free consultation and see how Vritti AI can revolutionize your operations.
-          </Typography>
-          
-          <Paper variant="elevated" sx={{ p: 4, backgroundColor: 'background.default' }}>
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-              <TextField
-                label="Full Name"
-                fullWidth
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
-              <TextField
-                label="Business Email"
-                type="email"
-                fullWidth
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <Button 
-                type="submit" 
-                intent="primary" 
-                size="large"
-                fullWidth
-              >
-                Request Free Consultation
-              </Button>
-            </form>
-          </Paper>
-        </div>
-      </Paper>
-
-      {/* Footer */}
-      <Paper variant="standard" sx={{ py: 4, px: 4, backgroundColor: 'primary.main', color: 'white' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
-          <Typography variant="h3" sx={{ mb: 2, color: 'white' }}>
-            Vritti AI
-          </Typography>
-          <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.8)' }}>
-            © 2024 Vritti AI. Transforming businesses through intelligent automation.
-          </Typography>
-        </div>
-      </Paper>
-    </div>
+      {/* Page Content */}
+      <Hero />
+      <PainPoints />
+      <SolutionOverview />
+      <IndustryCards />
+      <CTASection />
+    </>
   );
 }

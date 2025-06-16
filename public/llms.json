@@ -1,0 +1,194 @@
+{
+  "company": {
+    "name": "Vritti AI",
+    "description": "AI Business Operating System for Small Businesses",
+    "website": "https://vritti.ai",
+    "founded": "2024",
+    "location": "San Francisco, CA",
+    "mission": "To democratize enterprise-grade business intelligence by giving every small business owner their own private AI that manages operations through natural conversation.",
+    "vision": "A world where a salon owner in Mumbai has the same technological advantage as a Fortune 500 company."
+  },
+  "product": {
+    "name": "Vritti AI Business Operating System",
+    "category": "AI-Powered Business Management",
+    "target_audience": "Small business owners without technical expertise",
+    "primary_value_proposition": "Replace WhatsApp chaos with intelligent automation",
+    "core_problem_solved": "Small businesses lack access to enterprise-grade business intelligence and automation tools",
+    "unique_selling_points": [
+      "Works entirely through WhatsApp - no app downloads required",
+      "Private AI instance for each business",
+      "No technical knowledge required",
+      "Enterprise features at small business prices",
+      "Setup in 5 minutes with conversational AI",
+      "All-in-one solution replacing multiple tools"
+    ]
+  },
+  "features": [
+    {
+      "name": "Smart Scheduling",
+      "description": "AI-powered appointment booking that prevents double bookings",
+      "benefit": "Never miss appointments or have scheduling conflicts"
+    },
+    {
+      "name": "Customer Intelligence", 
+      "description": "Complete customer profiles with history and preferences",
+      "benefit": "Personalized service and improved customer relationships"
+    },
+    {
+      "name": "Inventory Tracking",
+      "description": "Real-time inventory management with automatic alerts",
+      "benefit": "Never run out of stock, optimize purchasing"
+    },
+    {
+      "name": "Financial Intelligence",
+      "description": "Live profit analysis and business performance insights",
+      "benefit": "Make data-driven decisions about pricing and services"
+    },
+    {
+      "name": "AI Assistant",
+      "description": "Natural language queries about business data",
+      "benefit": "Get instant answers about your business performance"
+    },
+    {
+      "name": "WhatsApp Integration",
+      "description": "Customers book through familiar WhatsApp interface",
+      "benefit": "No training required for customers, immediate adoption"
+    }
+  ],
+  "industries_served": [
+    {
+      "name": "Salons & Spas",
+      "use_case": "Appointment booking, client history, service tracking",
+      "specific_benefits": "Stylists love the appointment booking system"
+    },
+    {
+      "name": "Restaurants",
+      "use_case": "Table reservations, orders, inventory, staff coordination", 
+      "specific_benefits": "Table management made simple"
+    },
+    {
+      "name": "Clinics",
+      "use_case": "Patient appointments, medical history, treatment tracking",
+      "specific_benefits": "Patient history at fingertips"
+    },
+    {
+      "name": "Driving Schools",
+      "use_case": "Lesson booking, progress tracking, vehicle management",
+      "specific_benefits": "Instructor scheduling simplified"
+    }
+  ],
+  "pricing": {
+    "primary_plan": {
+      "name": "Everything Included",
+      "monthly_cost": "$114",
+      "breakdown": "$99 AI + ~$15 hosting",
+      "additional_locations": "$29/month each",
+      "included_features": [
+        "All features included",
+        "Unlimited staff accounts",
+        "24/7 AI assistant", 
+        "WhatsApp integration",
+        "Mobile + Desktop access",
+        "Free training & support",
+        "Real-time analytics",
+        "Automated workflows"
+      ],
+      "guarantees": [
+        "No credit card required",
+        "Setup in 5 minutes", 
+        "No contracts",
+        "Cancel anytime",
+        "No hidden fees"
+      ]
+    }
+  },
+  "how_it_works": [
+    {
+      "step": 1,
+      "title": "Get Your Private Vritti Instance",
+      "description": "Dedicated AI system spins up in minutes"
+    },
+    {
+      "step": 2, 
+      "title": "Tell AI About Your Business",
+      "description": "Simple conversation to configure operations"
+    },
+    {
+      "step": 3,
+      "title": "AI Sets Everything Up", 
+      "description": "Automatic workspace creation based on your needs"
+    },
+    {
+      "step": 4,
+      "title": "Customers Use WhatsApp",
+      "description": "No app downloads - familiar WhatsApp interface"
+    },
+    {
+      "step": 5,
+      "title": "Grow with Intelligence",
+      "description": "Continuous AI learning and optimization"
+    }
+  ],
+  "contact": {
+    "website": "https://vritti.ai",
+    "email": "hello@vritti.ai", 
+    "whatsapp": "+1234567890",
+    "support_hours": "24/7 AI support, human support during business hours",
+    "response_time": "Instant via WhatsApp for urgent matters"
+  },
+  "stats": {
+    "businesses_on_waitlist": "500+",
+    "industries_supported": "5",
+    "revenue_managed": "$50M+", 
+    "hours_saved_weekly": "15+",
+    "setup_time": "5 minutes",
+    "efficiency_improvement": "70% reduction in manual work"
+  },
+  "competitive_advantages": [
+    "Only AI system that works entirely through WhatsApp",
+    "Private AI instance per business ensures data privacy",
+    "No technical knowledge required for setup or use",
+    "Enterprise features at fraction of enterprise cost",
+    "Conversational setup vs complex configuration",
+    "All-in-one solution vs multiple separate tools",
+    "Built specifically for small businesses vs generic software"
+  ],
+  "common_use_cases": [
+    "Replace WhatsApp booking chaos with automated scheduling",
+    "Track inventory without Excel spreadsheets", 
+    "Get business insights without manual reporting",
+    "Manage customer relationships without losing data",
+    "Coordinate staff without constant messaging",
+    "Understand business profitability in real-time"
+  ],
+  "frequently_asked_questions": [
+    {
+      "question": "Do I need technical knowledge?",
+      "answer": "No technical knowledge required. Setup is conversational - just tell the AI about your business."
+    },
+    {
+      "question": "What happens to my data if I cancel?",
+      "answer": "You own your data completely. We provide export tools and delete all data within 30 days of cancellation."
+    },
+    {
+      "question": "How does WhatsApp integration work?", 
+      "answer": "Customers message your business WhatsApp number, and AI handles bookings, inquiries, and follow-ups automatically."
+    },
+    {
+      "question": "Can I add more businesses later?",
+      "answer": "Yes, additional locations are $29/month each with the same full feature set."
+    },
+    {
+      "question": "Is my business data secure?",
+      "answer": "Yes, each business gets a private AI instance with enterprise-grade security and encryption."
+    }
+  ],
+  "ideal_for": [
+    "Small business owners tired of WhatsApp chaos",
+    "Businesses wanting enterprise features without enterprise complexity", 
+    "Non-technical owners who need powerful automation",
+    "Service-based businesses with appointments and customers",
+    "Businesses wanting to compete with tech-savvy competitors",
+    "Owners spending too much time on manual business management"
+  ]
+}
