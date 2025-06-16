@@ -26,10 +26,12 @@ The `next.config.ts` file is already configured for static export:
 ### 2. GitHub Actions Workflow
 
 The deployment workflow (`.github/workflows/deploy.yml`) automatically:
+- ✅ Detects package manager (Yarn/npm) automatically
 - ✅ Builds the Next.js application
 - ✅ Exports to static files
 - ✅ Deploys to GitHub Pages
 - ✅ Caches dependencies for faster builds
+- ✅ Uses latest GitHub Actions (v4) for reliability
 
 ## 🚀 How to Deploy
 

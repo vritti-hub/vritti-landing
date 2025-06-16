@@ -95,6 +95,7 @@ If automatic creation fails:
 - ✅ Automatic npm dependency caching
 - ✅ Works with any repository configuration
 - ✅ Single job for build and deploy
+- ✅ Latest GitHub Actions (v4) - no deprecation warnings
 
 ### Custom Domain Setup
 
