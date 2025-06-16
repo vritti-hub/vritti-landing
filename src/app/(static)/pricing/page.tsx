@@ -1,8 +1,8 @@
 'use client';
 
-import { Typography } from 'quantum-ui/Typography';
-import { Paper } from 'quantum-ui/Paper';
-import { Button } from 'quantum-ui/Button';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Button } from '@vritti/quantum-ui/Button';
 import Link from 'next/link';
 import { PRICING_CONTENT, FAQ_ITEMS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';

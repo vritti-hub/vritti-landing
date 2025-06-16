@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTheme } from "quantum-ui";
-import { Button } from "quantum-ui/Button";
+import { useTheme } from "@vritti/quantum-ui";
+import { Button } from "@vritti/quantum-ui/Button";
 
 export default function ThemeToggle() {
   const { colorScheme, toggleColorScheme, isHydrated } = useTheme();

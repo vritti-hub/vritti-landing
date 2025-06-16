@@ -1,9 +1,9 @@
 'use client';
 
-import { Typography } from 'quantum-ui/Typography';
-import { Paper } from 'quantum-ui/Paper';
-import { Button } from 'quantum-ui/Button';
-import { TextField } from 'quantum-ui/TextField';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Button } from '@vritti/quantum-ui/Button';
+import { TextField } from '@vritti/quantum-ui/TextField';
 import { useState } from 'react';
 import { CONTACT_INFO, FAQ_ITEMS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';

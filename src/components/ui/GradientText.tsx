@@ -1,6 +1,6 @@
 'use client';
 
-import { Typography } from 'quantum-ui/Typography';
+import { Typography } from '@vritti/quantum-ui/Typography';
 import { motion } from 'framer-motion';
 import { ReactNode, CSSProperties } from 'react';
 

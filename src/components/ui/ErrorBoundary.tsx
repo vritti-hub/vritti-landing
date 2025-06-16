@@ -1,9 +1,9 @@
 'use client';
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
-import { Paper } from 'quantum-ui/Paper';
-import { Typography } from 'quantum-ui/Typography';
-import { Button } from 'quantum-ui/Button';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Button } from '@vritti/quantum-ui/Button';
 
 interface Props {
   children: ReactNode;

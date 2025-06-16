@@ -1,8 +1,8 @@
 'use client';
 
-import { Button } from 'quantum-ui/Button';
-import { Paper } from 'quantum-ui/Paper';
-import { Typography } from 'quantum-ui/Typography';
+import { Button } from '@vritti/quantum-ui/Button';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Typography } from '@vritti/quantum-ui/Typography';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';

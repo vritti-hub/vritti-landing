@@ -1,7 +1,7 @@
 'use client';
 
-import { Typography } from 'quantum-ui/Typography';
-import { Paper } from 'quantum-ui/Paper';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Paper } from '@vritti/quantum-ui/Paper';
 import { motion } from 'framer-motion';
 import { MISSION_CONTENT, STATS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';

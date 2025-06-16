@@ -3,7 +3,7 @@ import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/ui/CookieConsent";
 import type { Metadata } from "next";
 import { Inter, Quicksand, Space_Grotesk } from "next/font/google";
-import { ThemeScript } from "quantum-ui/next";
+import { ThemeScript } from "@vritti/quantum-ui/next";
 import "./globals.css";
 import { Providers } from "./providers";
 

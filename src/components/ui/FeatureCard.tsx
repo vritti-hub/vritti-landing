@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Typography } from "quantum-ui/Typography";
+import { Typography } from "@vritti/quantum-ui/Typography";
 import AnimatedCard from "./AnimatedCard";
 
 interface FeatureCardProps {

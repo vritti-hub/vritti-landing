@@ -1,8 +1,8 @@
 'use client';
 
-import { Typography } from 'quantum-ui/Typography';
-import { Paper } from 'quantum-ui/Paper';
-import { Button } from 'quantum-ui/Button';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Button } from '@vritti/quantum-ui/Button';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { PRICING_CONTENT } from '@/lib/constants/content';

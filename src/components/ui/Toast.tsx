@@ -2,9 +2,9 @@
 
 import React, { createContext, useContext, useCallback, useState, ReactNode } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Paper } from 'quantum-ui/Paper';
-import { Typography } from 'quantum-ui/Typography';
-import { Button } from 'quantum-ui/Button';
+import { Paper } from '@vritti/quantum-ui/Paper';
+import { Typography } from '@vritti/quantum-ui/Typography';
+import { Button } from '@vritti/quantum-ui/Button';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
 

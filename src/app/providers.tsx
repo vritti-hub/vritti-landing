@@ -1,6 +1,6 @@
 'use client';
 
-import { ThemeProvider } from 'quantum-ui';
+import { ThemeProvider } from '@vritti/quantum-ui';
 import ErrorBoundary from '@/components/ui/ErrorBoundary';
 import { ToastProvider } from '@/components/ui/Toast';
 

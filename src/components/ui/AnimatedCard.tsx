@@ -1,6 +1,6 @@
 'use client';
 
-import { Paper } from 'quantum-ui/Paper';
+import { Paper } from '@vritti/quantum-ui/Paper';
 import { motion } from 'framer-motion';
 import { hoverLift } from '@/lib/utils/animations';
 import { ReactNode } from 'react';

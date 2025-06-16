@@ -4,9 +4,9 @@ import GradientText from "@/components/ui/GradientText";
 import { INDUSTRIES } from "@/lib/constants/content";
 import { fadeInUp, staggerContainer } from "@/lib/utils/animations";
 import { AnimatePresence, motion } from "framer-motion";
-import { Button } from "quantum-ui/Button";
-import { Paper } from "quantum-ui/Paper";
-import { Typography } from "quantum-ui/Typography";
+import { Button } from "@vritti/quantum-ui/Button";
+import { Paper } from "@vritti/quantum-ui/Paper";
+import { Typography } from "@vritti/quantum-ui/Typography";
 import { useState } from "react";
 
 export default function IndustryCards() {
