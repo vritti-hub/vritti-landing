@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next build",
+    "deploy": "npm run export",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",

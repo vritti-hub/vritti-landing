@@ -54,23 +54,47 @@ export default function Contact() {
     setErrors({});
     
     try {
-      // In a real app, this would be an API call
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // For static deployment (GitHub Pages), we'll use a form service or redirect to email
+      // In production, you can integrate with services like Formspree, Netlify Forms, or Vercel Forms
       
-      if (!response.ok) {
-        throw new Error('Failed to send message');
+      // Check if we're in a static deployment
+      const isStaticDeployment = process.env.NODE_ENV === 'production' && !window.location.origin.includes('localhost');
+      
+      if (isStaticDeployment) {
+        // For static deployment, open email client as fallback
+        const emailSubject = encodeURIComponent(`Contact from ${formData.name} - ${formData.company || 'Vritti AI Inquiry'}`);
+        const emailBody = encodeURIComponent(
+          `Name: ${formData.name}\n` +
+          `Email: ${formData.email}\n` +
+          `Company: ${formData.company || 'Not provided'}\n\n` +
+          `Message:\n${formData.message}`
+        );
+        
+        window.open(`mailto:${CONTACT_INFO.email}?subject=${emailSubject}&body=${emailBody}`);
+        
+        success(
+          'Email client opened!',
+          'Please send the email to complete your inquiry'
+        );
+      } else {
+        // Try API route for local development
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to send message');
+        }
+        
+        success(
+          'Message sent successfully!',
+          'We&apos;ll get back to you within 24 hours'
+        );
       }
-      
-      success(
-        'Message sent successfully!',
-        'We&apos;ll get back to you within 24 hours'
-      );
       
       // Reset form
       setFormData({
@@ -291,9 +315,8 @@ export default function Contact() {
                   <Button
                     intent="primary"
                     size="large"
+                    component="a"
                     href={`https://wa.me/${CONTACT_INFO.whatsapp.replace(/[^0-9]/g, '')}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     sx={{
                       backgroundColor: 'var(--quantum-color-status-success)',
                       '&:hover': {
