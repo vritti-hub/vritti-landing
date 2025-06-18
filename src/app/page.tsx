@@ -1,5 +1,3 @@
-'use client';
-
 import Hero from '@/components/sections/Hero';
 import PainPoints from '@/components/sections/PainPoints';
 import SolutionOverview from '@/components/sections/SolutionOverview';

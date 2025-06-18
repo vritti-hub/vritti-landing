@@ -1,12 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Enable static export for GitHub Pages
-  output: 'export',
+  // SSR enabled for Vercel deployment
   
-  // Disable image optimization for static export
+  // Enable image optimization for Vercel
   images: {
-    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -14,12 +12,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  
-  // Set basePath for GitHub Pages (will be automatically configured by GitHub Actions)
-  basePath: process.env.NODE_ENV === 'production' ? '/vritti-landing' : '',
-  
-  // Ensure trailing slash for proper routing
-  trailingSlash: true,
   
   experimental: {
     optimizePackageImports: ['quantum-ui', 'framer-motion'],
