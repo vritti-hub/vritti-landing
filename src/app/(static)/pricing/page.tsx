@@ -6,7 +6,6 @@ import { Button } from '@vritti/quantum-ui/Button';
 import Link from 'next/link';
 import { PRICING_CONTENT, FAQ_ITEMS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import AnimatedCard from '@/components/ui/AnimatedCard';
 
 export default function Pricing() {
   return (
@@ -14,7 +13,7 @@ export default function Pricing() {
       {/* Hero Section */}
       <section style={{ position: 'relative' }}>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-brand)',
             py: 8,
@@ -63,7 +62,7 @@ export default function Pricing() {
       {/* Pricing Card */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -71,8 +70,8 @@ export default function Pricing() {
           }}
         >
           <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-            <AnimatedCard
-              variant="glass"
+            <Paper
+              variant="feature" glass
               sx={{
                 p: 6,
                 textAlign: 'center',
@@ -202,7 +201,7 @@ export default function Pricing() {
               >
                 {PRICING_CONTENT.guarantee}
               </Typography>
-            </AnimatedCard>
+            </Paper>
           </div>
         </Paper>
       </section>
@@ -210,7 +209,7 @@ export default function Pricing() {
       {/* FAQ Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -233,10 +232,9 @@ export default function Pricing() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
               {FAQ_ITEMS.map((faq, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.1}
+                  variant="surface"
                   sx={{
                     p: 4,
                     backgroundColor: 'var(--quantum-color-surface-subtle)',
@@ -262,7 +260,7 @@ export default function Pricing() {
                   >
                     {faq.answer}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
           </div>

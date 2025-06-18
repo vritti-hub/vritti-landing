@@ -6,15 +6,13 @@ import { Button } from '@vritti/quantum-ui/Button';
 import Link from 'next/link';
 import { STATS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import AnimatedCard from '@/components/ui/AnimatedCard';
-import { motion } from 'framer-motion';
 
 export default function About() {
   return (
     <div style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden' }}>
-        <motion.div
+        <div
           style={{
             position: 'absolute',
             top: 0,
@@ -27,11 +25,10 @@ export default function About() {
         />
 
         <Paper
-          variant="standard"
+          variant="section"
+          fullWidth
           sx={{
             background: 'transparent',
-            py: 8,
-            px: 2,
             textAlign: 'center',
           }}
         >
@@ -67,7 +64,7 @@ export default function About() {
       {/* Company Story */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -84,8 +81,8 @@ export default function About() {
                 marginBottom: '4rem',
               }}
             >
-              <AnimatedCard
-                variant="glass"
+              <Paper
+                variant="feature" glass
                 sx={{
                   p: 4,
                   backgroundColor: 'var(--quantum-color-surface-accent-subtle)',
@@ -129,11 +126,10 @@ export default function About() {
                   We set out to change that by building an AI-powered business operating system that's 
                   powerful enough for any business, yet simple enough for anyone to use.
                 </Typography>
-              </AnimatedCard>
+              </Paper>
 
-              <AnimatedCard
-                variant="elevated"
-                delay={0.2}
+              <Paper
+                variant="surface"
                 sx={{
                   p: 4,
                   textAlign: 'center',
@@ -167,7 +163,7 @@ export default function About() {
                   We're democratizing business intelligence by making enterprise-grade AI accessible 
                   to every small business owner, regardless of technical background.
                 </Typography>
-              </AnimatedCard>
+              </Paper>
             </div>
 
             {/* Timeline */}
@@ -213,10 +209,9 @@ export default function About() {
                     description: 'Expanding to serve thousands of small businesses globally',
                   },
                 ].map((milestone, index) => (
-                  <AnimatedCard
+                  <Paper
                     key={index}
-                    variant="elevated"
-                    delay={index * 0.15}
+                    variant="surface"
                     sx={{
                       p: 4,
                       textAlign: 'center',
@@ -254,7 +249,7 @@ export default function About() {
                     >
                       {milestone.description}
                     </Typography>
-                  </AnimatedCard>
+                  </Paper>
                 ))}
               </div>
             </div>
@@ -265,7 +260,7 @@ export default function About() {
       {/* Stats Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -299,10 +294,9 @@ export default function About() {
                 { stat: STATS.revenueManaged, label: 'Revenue Managed', icon: '💰' },
                 { stat: STATS.hoursSaved, label: 'Hours Saved Weekly', icon: '⏰' },
               ].map((item, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.1}
+                  variant="surface"
                   sx={{
                     p: 4,
                     textAlign: 'center',
@@ -312,12 +306,7 @@ export default function About() {
                   <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
                     {item.icon}
                   </div>
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: index * 0.2, duration: 0.6, ease: 'backOut' }}
-                    viewport={{ once: true }}
-                  >
+                  <div>
                     <Typography
                       variant="h2"
                       sx={{
@@ -329,7 +318,7 @@ export default function About() {
                     >
                       {item.stat}
                     </Typography>
-                  </motion.div>
+                  </div>
                   <Typography
                     variant="body1"
                     intent="secondary"
@@ -337,7 +326,7 @@ export default function About() {
                   >
                     {item.label}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
           </div>
@@ -347,7 +336,7 @@ export default function About() {
       {/* Values & Culture */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -397,10 +386,9 @@ export default function About() {
                   description: 'Your business data is sacred. We protect it like our own.',
                 },
               ].map((value, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.15}
+                  variant="surface"
                   sx={{
                     p: 4,
                     textAlign: 'center',
@@ -430,13 +418,13 @@ export default function About() {
                   >
                     {value.description}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
 
             {/* CTA */}
-            <AnimatedCard
-              variant="glass"
+            <Paper
+              variant="feature" glass
               sx={{
                 p: 6,
                 backgroundColor: 'var(--quantum-color-surface-accent-subtle)',
@@ -502,7 +490,7 @@ export default function About() {
                   Learn More
                 </Button>
               </div>
-            </AnimatedCard>
+            </Paper>
           </div>
         </Paper>
       </section>

@@ -2,7 +2,6 @@
 
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Paper } from '@vritti/quantum-ui/Paper';
-import { motion } from 'framer-motion';
 import { SITE_CONFIG, CONTACT_INFO } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
 
@@ -15,7 +14,7 @@ export default function Terms() {
       {/* Hero Section */}
       <section style={{ position: 'relative' }}>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-brand)',
             py: 6,
@@ -52,17 +51,14 @@ export default function Terms() {
       {/* Content */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
             px: 2,
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <div
             style={{ maxWidth: '800px', margin: '0 auto' }}
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -344,7 +340,7 @@ export default function Terms() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </Paper>
       </section>
     </div>

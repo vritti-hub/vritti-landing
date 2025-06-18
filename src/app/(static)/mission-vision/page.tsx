@@ -2,10 +2,8 @@
 
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Paper } from '@vritti/quantum-ui/Paper';
-import { motion } from 'framer-motion';
 import { MISSION_CONTENT, STATS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import AnimatedCard from '@/components/ui/AnimatedCard';
 
 
 export default function MissionVision() {
@@ -13,16 +11,7 @@ export default function MissionVision() {
     <div style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden' }}>
-        <motion.div
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            repeatType: 'reverse',
-            ease: 'linear',
-          }}
+        <div
           style={{
             position: 'absolute',
             top: 0,
@@ -39,7 +28,7 @@ export default function MissionVision() {
         />
 
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             background: 'transparent',
             py: 8,
@@ -79,7 +68,7 @@ export default function MissionVision() {
       {/* Mission Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -87,8 +76,8 @@ export default function MissionVision() {
           }}
         >
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <AnimatedCard
-              variant="glass"
+            <Paper
+              variant="feature" glass
               sx={{
                 p: 6,
                 textAlign: 'center',
@@ -123,7 +112,7 @@ export default function MissionVision() {
               >
                 "{MISSION_CONTENT.mission}"
               </Typography>
-            </AnimatedCard>
+            </Paper>
 
             {/* Mission Pillars */}
             <div
@@ -150,10 +139,9 @@ export default function MissionVision() {
                   description: 'Constantly evolving our platform to stay ahead of small business needs.',
                 },
               ].map((pillar, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.2}
+                  variant="surface"
                   sx={{
                     p: 4,
                     textAlign: 'center',
@@ -176,7 +164,7 @@ export default function MissionVision() {
                   >
                     {pillar.description}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
           </div>
@@ -186,7 +174,7 @@ export default function MissionVision() {
       {/* Vision Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             background: 'linear-gradient(180deg, #16213e 0%, #0f0f23 100%)',
             py: 8,
@@ -194,8 +182,8 @@ export default function MissionVision() {
           }}
         >
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <AnimatedCard
-              variant="glass"
+            <Paper
+              variant="feature" glass
               sx={{
                 p: 6,
                 textAlign: 'center',
@@ -230,7 +218,7 @@ export default function MissionVision() {
               >
                 "{MISSION_CONTENT.vision}"
               </Typography>
-            </AnimatedCard>
+            </Paper>
 
             {/* Impact Stats */}
             <div
@@ -246,22 +234,16 @@ export default function MissionVision() {
                 { stat: STATS.revenueManaged, label: 'Revenue Managed' },
                 { stat: STATS.hoursSaved, label: 'Hours Saved Weekly' },
               ].map((item, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.1}
+                  variant="surface"
                   sx={{
                     p: 4,
                     textAlign: 'center',
                     backgroundColor: 'var(--quantum-color-surface-subtle)',
                   }}
                 >
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ delay: index * 0.2, duration: 0.6, ease: 'backOut' }}
-                    viewport={{ once: true }}
-                  >
+                  <div>
                     <Typography
                       variant="h2"
                       sx={{
@@ -273,14 +255,14 @@ export default function MissionVision() {
                     >
                       {item.stat}
                     </Typography>
-                  </motion.div>
+                  </div>
                   <Typography
                     variant="body1"
                     sx={{ color: 'rgba(255, 255, 255, 0.8)', fontWeight: 500 }}
                   >
                     {item.label}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
           </div>
@@ -290,7 +272,7 @@ export default function MissionVision() {
       {/* Why Vritti Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             background: 'linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%)',
             py: 8,
@@ -310,8 +292,8 @@ export default function MissionVision() {
               Why "Vritti"?
             </Typography>
 
-            <AnimatedCard
-              variant="glass"
+            <Paper
+              variant="feature" glass
               sx={{
                 p: 6,
                 background: 'rgba(0, 102, 255, 0.05)',
@@ -330,7 +312,7 @@ export default function MissionVision() {
               >
                 {MISSION_CONTENT.vritteMeaning}
               </Typography>
-            </AnimatedCard>
+            </Paper>
 
             {/* Values Grid */}
             <div
@@ -342,10 +324,9 @@ export default function MissionVision() {
               }}
             >
               {MISSION_CONTENT.values.map((value, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.15}
+                  variant="surface"
                   sx={{
                     p: 4,
                     textAlign: 'center',
@@ -372,7 +353,7 @@ export default function MissionVision() {
                   >
                     {value.description}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
           </div>

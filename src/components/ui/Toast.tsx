@@ -1,7 +1,6 @@
 'use client';
 
 import React, { createContext, useContext, useCallback, useState, ReactNode } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Button } from '@vritti/quantum-ui/Button';
@@ -119,15 +118,13 @@ const ToastContainer: React.FC<ToastContainerProps> = ({ toasts, onRemove }) => 
         width: '100%',
       }}
     >
-      <AnimatePresence>
-        {toasts.map((toast) => (
-          <ToastItem
-            key={toast.id}
-            toast={toast}
-            onRemove={() => onRemove(toast.id)}
-          />
-        ))}
-      </AnimatePresence>
+      {toasts.map((toast) => (
+        <ToastItem
+          key={toast.id}
+          toast={toast}
+          onRemove={() => onRemove(toast.id)}
+        />
+      ))}
     </div>
   );
 };
@@ -138,6 +135,14 @@ interface ToastItemProps {
 }
 
 const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    // Trigger animation on mount
+    const timer = setTimeout(() => setIsVisible(true), 10);
+    return () => clearTimeout(timer);
+  }, []);
+
   const getToastStyles = (type: ToastType) => {
     switch (type) {
       case 'success':
@@ -181,14 +186,15 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
   const styles = getToastStyles(toast.type);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: -50, scale: 0.9 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: -20, scale: 0.9 }}
-      transition={{ duration: 0.3, ease: 'easeOut' }}
+    <div
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(-50px) scale(0.9)',
+        transition: 'all 0.3s ease-out',
+      }}
     >
       <Paper
-        variant="elevated"
+        variant="surface"
         sx={{
           p: 2,
           backgroundColor: styles.backgroundColor,
@@ -261,6 +267,6 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onRemove }) => {
           </Button>
         </div>
       </Paper>
-    </motion.div>
+    </div>
   );
 };

@@ -3,30 +3,17 @@
 import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
 import MobileMenu from './MobileMenu';
 import ResponsiveWrapper from '@/components/ui/ResponsiveWrapper';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import { Hover } from '@/components/ui/Animated';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { scrollY } = useScroll();
-  
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ['var(--quantum-color-surface-transparent)', 'var(--quantum-color-surface-glass)']
-  );
-  
-  const backdropFilter = useTransform(
-    scrollY,
-    [0, 100],
-    ['blur(0px)', 'blur(20px)']
-  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +26,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <nav
         style={{
           position: 'fixed',
           top: 0,
@@ -50,7 +37,8 @@ export default function Navbar() {
         }}
       >
         <Paper 
-          variant="standard"
+          variant="minimal"
+          nav
           sx={{ 
             borderRadius: 0,
             backgroundColor: isScrolled ? 'var(--quantum-color-surface-glass)' : 'transparent',
@@ -70,10 +58,7 @@ export default function Navbar() {
           >
             {/* Logo */}
             <Link href="/" style={{ textDecoration: 'none' }}>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+              <Hover animation="hoverScale">
                 <Typography 
                   variant="h3" 
                   intent="brand"
@@ -84,7 +69,7 @@ export default function Navbar() {
                 >
                   {SITE_CONFIG.name}
                 </Typography>
-              </motion.div>
+              </Hover>
             </Link>
 
             {/* Desktop Navigation */}
@@ -93,9 +78,16 @@ export default function Navbar() {
                 <nav style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                   {NAVIGATION_ITEMS.map((item) => (
                     <Link key={item.href} href={item.href} style={{ textDecoration: 'none' }}>
-                      <motion.div
-                        whileHover={{ y: -2 }}
-                        whileTap={{ y: 0 }}
+                      <div
+                        style={{
+                          transition: 'transform 0.2s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-2px)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                        }}
                       >
                         <Typography 
                           variant="body1"
@@ -111,7 +103,7 @@ export default function Navbar() {
                         >
                           {item.label}
                         </Typography>
-                      </motion.div>
+                      </div>
                     </Link>
                   ))}
                 </nav>
@@ -122,10 +114,7 @@ export default function Navbar() {
 
               {/* CTA Button */}
               <ResponsiveWrapper breakpoint={768} showAbove={true}>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
+                <Hover animation="hoverScale">
                   <Button 
                     intent="primary" 
                     size="medium"
@@ -134,59 +123,59 @@ export default function Navbar() {
                   >
                     Get Early Access
                   </Button>
-                </motion.div>
+                </Hover>
               </ResponsiveWrapper>
 
               {/* Mobile Menu Button */}
               <ResponsiveWrapper breakpoint={768} showAbove={false}>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsOpen(true)}
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '4px',
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: '8px',
-                  }}
-                  aria-label="Open menu"
-                >
-                  <span 
+                <Hover animation="hoverScale">
+                  <button
+                    onClick={() => setIsOpen(true)}
                     style={{
-                      width: '24px',
-                      height: '2px',
-                      backgroundColor: 'var(--quantum-color-text-primary)',
-                      borderRadius: '1px',
-                      transition: 'all 0.3s ease',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      gap: '4px',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '8px',
                     }}
-                  />
-                  <span 
-                    style={{
-                      width: '24px',
-                      height: '2px',
-                      backgroundColor: 'var(--quantum-color-text-primary)',
-                      borderRadius: '1px',
-                      transition: 'all 0.3s ease',
-                    }}
-                  />
-                  <span 
-                    style={{
-                      width: '24px',
-                      height: '2px',
-                      backgroundColor: 'var(--quantum-color-text-primary)',
-                      borderRadius: '1px',
-                      transition: 'all 0.3s ease',
-                    }}
-                  />
-                </motion.button>
+                    aria-label="Open menu"
+                  >
+                    <span 
+                      style={{
+                        width: '24px',
+                        height: '2px',
+                        backgroundColor: 'var(--quantum-color-text-primary)',
+                        borderRadius: '1px',
+                        transition: 'all 0.3s ease',
+                      }}
+                    />
+                    <span 
+                      style={{
+                        width: '24px',
+                        height: '2px',
+                        backgroundColor: 'var(--quantum-color-text-primary)',
+                        borderRadius: '1px',
+                        transition: 'all 0.3s ease',
+                      }}
+                    />
+                    <span 
+                      style={{
+                        width: '24px',
+                        height: '2px',
+                        backgroundColor: 'var(--quantum-color-text-primary)',
+                        borderRadius: '1px',
+                        transition: 'all 0.3s ease',
+                      }}
+                    />
+                  </button>
+                </Hover>
               </ResponsiveWrapper>
             </div>
           </div>
         </Paper>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu */}
       <MobileMenu isOpen={isOpen} onClose={() => setIsOpen(false)} />

@@ -1,8 +1,8 @@
 'use client';
 
 import { Typography } from '@vritti/quantum-ui/Typography';
-import { motion } from 'framer-motion';
 import { ReactNode, CSSProperties } from 'react';
+import { Continuous } from './Animated';
 
 interface GradientTextProps {
   children: ReactNode;
@@ -49,15 +49,8 @@ export default function GradientText({
 
   if (animate) {
     return (
-      <motion.div
-        animate={{
-          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
+      <Continuous
+        animation="gradientShift"
         style={{
           background: gradients[gradient],
           backgroundSize: '200% 200%',
@@ -80,7 +73,7 @@ export default function GradientText({
         >
           {children}
         </Typography>
-      </motion.div>
+      </Continuous>
     );
   }
 

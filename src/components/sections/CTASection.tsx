@@ -3,25 +3,18 @@
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Button } from '@vritti/quantum-ui/Button';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { PRICING_CONTENT } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import { fadeInUp, staggerContainer, staggerItem } from '@/lib/utils/animations';
+import { Animated, Stagger, Continuous, Hover } from '@/components/ui/Animated';
 
 export default function CTASection() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Background with gradient and animation */}
-      <motion.div
-        animate={{
-          backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: 'linear',
-        }}
+      <Continuous
+        animation="gradientShift"
+        as="div"
         style={{
           position: 'absolute',
           top: 0,
@@ -32,22 +25,21 @@ export default function CTASection() {
           backgroundSize: '400% 400%',
           zIndex: -1,
         }}
-      />
+      >
+        <div />
+      </Continuous>
 
       <Paper
-        variant="subtle"
+        variant="section"
+        fullWidth
         sx={{
-          py: 8,
-          px: 2,
           position: 'relative',
           backgroundColor: 'transparent',
         }}
       >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
+        <Stagger
+          staggerDelay={0.15}
+          config={{ delay: 200, threshold: 0.1, rootMargin: '-100px' }}
           style={{
             maxWidth: '1000px',
             margin: '0 auto',
@@ -55,7 +47,7 @@ export default function CTASection() {
           }}
         >
           {/* Main Headline */}
-          <motion.div variants={staggerItem}>
+          <Animated animation="fadeInUp" config={{ delay: 0 }}>
             <GradientText
               variant="h1"
               gradient="hero"
@@ -70,10 +62,10 @@ export default function CTASection() {
             >
               Ready to Transform Your Business?
             </GradientText>
-          </motion.div>
+          </Animated>
 
           {/* Subheadline */}
-          <motion.div variants={staggerItem}>
+          <Animated animation="fadeInUp" config={{ delay: 150 }}>
             <Typography
               variant="h3"
               intent="primary"
@@ -89,21 +81,18 @@ export default function CTASection() {
             >
               Join hundreds of small businesses already transforming their operations with AI
             </Typography>
-          </motion.div>
+          </Animated>
 
           {/* Pricing Preview Card */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 300 }}
             style={{ marginBottom: '3rem' }}
           >
             <Paper
-              variant="glass"
+              variant="feature"
+              glass
               sx={{
-                p: 4,
-                backgroundColor: 'var(--quantum-color-surface-glass)',
-                backdropFilter: 'blur(20px)',
-                border: '2px solid var(--quantum-color-border-glass)',
-                borderRadius: '20px',
                 maxWidth: '400px',
                 mx: 'auto',
               }}
@@ -119,10 +108,7 @@ export default function CTASection() {
                 {PRICING_CONTENT.title}
               </Typography>
 
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              >
+              <Continuous animation="pulse">
                 <Typography
                   variant="h2"
                   intent="success"
@@ -145,7 +131,7 @@ export default function CTASection() {
                     /month
                   </Typography>
                 </Typography>
-              </motion.div>
+              </Continuous>
 
               <Typography
                 variant="body1"
@@ -167,11 +153,12 @@ export default function CTASection() {
                 {PRICING_CONTENT.additionalLocation}
               </Typography>
             </Paper>
-          </motion.div>
+          </Animated>
 
           {/* CTA Buttons */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 450 }}
             style={{
               display: 'flex',
               gap: '1.5rem',
@@ -181,10 +168,7 @@ export default function CTASection() {
               marginBottom: '2rem',
             }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <Hover animation="hoverLift">
               <Button
                 intent="primary"
                 size="large"
@@ -206,12 +190,9 @@ export default function CTASection() {
               >
                 Get Early Access
               </Button>
-            </motion.div>
+            </Hover>
 
-            <motion.div
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <Hover animation="hoverLift">
               <Button
                 intent="secondary"
                 size="large"
@@ -233,11 +214,11 @@ export default function CTASection() {
               >
                 View Full Pricing
               </Button>
-            </motion.div>
-          </motion.div>
+            </Hover>
+          </Animated>
 
           {/* Guarantee Text */}
-          <motion.div variants={staggerItem}>
+          <Animated animation="fadeInUp" config={{ delay: 600 }}>
             <Typography
               variant="body1"
               intent="secondary"
@@ -248,11 +229,12 @@ export default function CTASection() {
             >
               {PRICING_CONTENT.guarantee}
             </Typography>
-          </motion.div>
+          </Animated>
 
           {/* Trust Indicators */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 750 }}
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -263,13 +245,11 @@ export default function CTASection() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ fontSize: '1.5rem' }}
-              >
-                ✅
-              </motion.div>
+              <Continuous animation="pulse">
+                <div style={{ fontSize: '1.5rem' }}>
+                  ✅
+                </div>
+              </Continuous>
               <Typography
                 variant="body2"
                 intent="secondary"
@@ -279,13 +259,11 @@ export default function CTASection() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                style={{ fontSize: '1.5rem' }}
-              >
-                🔒
-              </motion.div>
+              <Continuous animation="pulse">
+                <div style={{ fontSize: '1.5rem' }}>
+                  🔒
+                </div>
+              </Continuous>
               <Typography
                 variant="body2"
                 intent="secondary"
@@ -295,13 +273,11 @@ export default function CTASection() {
             </div>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                style={{ fontSize: '1.5rem' }}
-              >
-                ⚡
-              </motion.div>
+              <Continuous animation="pulse">
+                <div style={{ fontSize: '1.5rem' }}>
+                  ⚡
+                </div>
+              </Continuous>
               <Typography
                 variant="body2"
                 intent="secondary"
@@ -309,8 +285,8 @@ export default function CTASection() {
                 Setup in 5 Minutes
               </Typography>
             </div>
-          </motion.div>
-        </motion.div>
+          </Animated>
+        </Stagger>
       </Paper>
     </section>
   );

@@ -3,20 +3,19 @@
 import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HERO_CONTENT } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import { fadeInUp, fadeInDown, staggerContainer, staggerItem } from '@/lib/utils/animations';
+import { Animated, Stagger, Continuous, Hover } from '@/components/ui/Animated';
 
 export default function Hero() {
   return (
     <section style={{ position: 'relative', overflow: 'hidden' }}>
       {/* Background */}
-      <motion.div
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: 'easeOut' }}
+      <Animated 
+        animation="fadeIn" 
+        config={{ duration: 1500, delay: 0 }}
+        as="div"
         style={{
           position: 'absolute',
           top: 0,
@@ -26,19 +25,14 @@ export default function Hero() {
           background: 'var(--quantum-color-background-brand)',
           zIndex: -2,
         }}
-      />
+      >
+        <div />
+      </Animated>
 
       {/* Animated background particles */}
-      <motion.div
-        animate={{
-          backgroundPosition: ['0% 0%', '100% 100%'],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          repeatType: 'reverse',
-          ease: 'linear',
-        }}
+      <Continuous
+        animation="backgroundFloat"
+        as="div"
         style={{
           position: 'absolute',
           top: 0,
@@ -52,24 +46,23 @@ export default function Hero() {
           `,
           zIndex: -1,
         }}
-      />
+      >
+        <div />
+      </Continuous>
 
       <Paper
-        variant="standard"
+        variant="section"
+        fullWidth
         sx={{
           background: 'transparent',
           minHeight: '100vh',
           display: 'flex',
           alignItems: 'center',
-          pt: 8,
-          pb: 6,
-          px: 2,
         }}
       >
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+        <Stagger
+          staggerDelay={0.15}
+          config={{ delay: 200 }}
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
@@ -79,7 +72,7 @@ export default function Hero() {
           }}
         >
           {/* Main Headline */}
-          <motion.div variants={staggerItem}>
+          <Animated animation="fadeInUp" config={{ delay: 0 }}>
             <GradientText
               variant="h1"
               gradient="hero"
@@ -98,10 +91,10 @@ export default function Hero() {
             >
               {HERO_CONTENT.headline}
             </GradientText>
-          </motion.div>
+          </Animated>
 
           {/* Subheadline */}
-          <motion.div variants={staggerItem}>
+          <Animated animation="fadeInUp" config={{ delay: 150 }}>
             <Typography
               variant="h2"
               intent="primary"
@@ -121,11 +114,12 @@ export default function Hero() {
             >
               {HERO_CONTENT.subheadline}
             </Typography>
-          </motion.div>
+          </Animated>
 
           {/* CTA Buttons */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 300 }}
             style={{
               display: 'flex',
               gap: '1.5rem',
@@ -135,10 +129,7 @@ export default function Hero() {
               marginBottom: '3rem',
             }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <Hover animation="hoverScale">
               <Button
                 intent="primary"
                 size="large"
@@ -160,12 +151,9 @@ export default function Hero() {
               >
                 {HERO_CONTENT.primaryCTA}
               </Button>
-            </motion.div>
+            </Hover>
 
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <Hover animation="hoverScale">
               <Button
                 intent="secondary"
                 size="large"
@@ -186,36 +174,36 @@ export default function Hero() {
               >
                 {HERO_CONTENT.secondaryCTA}
               </Button>
-            </motion.div>
-          </motion.div>
+            </Hover>
+          </Animated>
 
           {/* Hero Dashboard Illustration */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 450 }}
             style={{
               display: 'flex',
               justifyContent: 'center',
               marginBottom: '3rem',
             }}
           >
-            <motion.div
-              style={{
-                fontSize: '8rem',
-                lineHeight: 1,
-                filter: 'drop-shadow(0 10px 30px var(--quantum-color-accent-alpha-20))',
-              }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              🚀
-            </motion.div>
-          </motion.div>
+            <Hover animation="hoverScale">
+              <div
+                style={{
+                  fontSize: '8rem',
+                  lineHeight: 1,
+                  filter: 'drop-shadow(0 10px 30px var(--quantum-color-accent-alpha-20))',
+                }}
+              >
+                🚀
+              </div>
+            </Hover>
+          </Animated>
 
           {/* Trust Bar */}
-          <motion.div
-            variants={staggerItem}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 600 }}
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -225,17 +213,17 @@ export default function Hero() {
               marginBottom: '6rem',
             }}
           >
-            <motion.div
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-              style={{
-                width: '8px',
-                height: '8px',
-                borderRadius: '50%',
-                background: 'var(--quantum-color-status-success)',
-                boxShadow: '0 0 20px var(--quantum-color-status-success)',
-              }}
-            />
+            <Continuous animation="pulse">
+              <div
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
+                  background: 'var(--quantum-color-status-success)',
+                  boxShadow: '0 0 20px var(--quantum-color-status-success)',
+                }}
+              />
+            </Continuous>
             <Typography
               variant="body1"
               intent="primary"
@@ -247,9 +235,9 @@ export default function Hero() {
             >
               {HERO_CONTENT.trustBar}
             </Typography>
-          </motion.div>
+          </Animated>
 
-        </motion.div>
+        </Stagger>
       </Paper>
     </section>
   );

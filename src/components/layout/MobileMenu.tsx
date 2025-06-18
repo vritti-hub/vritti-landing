@@ -3,10 +3,11 @@
 import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import { Animated, Stagger, Hover } from '@/components/ui/Animated';
+import { useEffect, useState } from 'react';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -14,68 +15,29 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
-  const overlayVariants = {
-    closed: {
-      opacity: 0,
-      pointerEvents: 'none' as const,
-    },
-    open: {
-      opacity: 1,
-      pointerEvents: 'auto' as const,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
+  const [shouldRender, setShouldRender] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const menuVariants = {
-    closed: {
-      x: '100%',
-      transition: {
-        duration: 0.3,
-        ease: [0.6, -0.05, 0.01, 0.99] as const,
-      },
-    },
-    open: {
-      x: 0,
-      transition: {
-        duration: 0.3,
-        ease: [0.6, -0.05, 0.01, 0.99] as const,
-      },
-    },
-  };
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      setIsAnimating(true);
+    } else if (shouldRender) {
+      setIsAnimating(false);
+      // Delay unmounting to allow exit animation
+      const timer = setTimeout(() => setShouldRender(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, shouldRender]);
 
-  const itemVariants = {
-    closed: {
-      opacity: 0,
-      x: 20,
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-    },
-  };
-
-  const containerVariants = {
-    closed: {},
-    open: {
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+  if (!shouldRender) return null;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
+    <div>
+      {shouldRender && (
         <>
           {/* Overlay */}
-          <motion.div
-            variants={overlayVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
+          <div
             onClick={onClose}
             style={{
               position: 'fixed',
@@ -86,15 +48,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               backgroundColor: 'var(--quantum-color-overlay)',
               zIndex: 60,
               backdropFilter: 'blur(4px)',
+              opacity: isAnimating ? 1 : 0,
+              transition: 'opacity 0.3s ease',
+              pointerEvents: isAnimating ? 'auto' : 'none',
             }}
           />
 
           {/* Menu Panel */}
-          <motion.div
-            variants={menuVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
+          <div
             style={{
               position: 'fixed',
               top: 0,
@@ -103,14 +64,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               width: '300px',
               maxWidth: '85vw',
               zIndex: 70,
+              transform: isAnimating ? 'translateX(0)' : 'translateX(100%)',
+              transition: 'transform 0.3s cubic-bezier(0.6, -0.05, 0.01, 0.99)',
             }}
           >
             <Paper
-              variant="glass"
+              variant="minimal"
+              nav
               sx={{
                 height: '100%',
-                backgroundColor: 'var(--quantum-color-surface-glass)',
-                backdropFilter: 'blur(20px)',
                 borderRadius: 0,
                 borderLeft: '1px solid var(--quantum-color-border-glass)',
                 display: 'flex',
@@ -140,42 +102,39 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   {SITE_CONFIG.name}
                 </Typography>
 
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={onClose}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    padding: '8px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                  aria-label="Close menu"
-                >
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                <Hover animation="hoverScale">
+                  <button
+                    onClick={onClose}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      padding: '8px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                    aria-label="Close menu"
                   >
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </motion.button>
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <line x1="18" y1="6" x2="6" y2="18"></line>
+                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                  </button>
+                </Hover>
               </div>
 
               {/* Navigation Items */}
-              <motion.nav
-                variants={containerVariants}
-                initial="closed"
-                animate="open"
+              <nav
                 style={{
                   flex: 1,
                   padding: '2rem',
@@ -185,26 +144,33 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 }}
               >
                 {NAVIGATION_ITEMS.map((item, index) => (
-                  <motion.div key={item.href} variants={itemVariants}>
+                  <Animated 
+                    key={item.href} 
+                    animation="slideInRight"
+                    config={{ 
+                      delay: isAnimating ? 200 + (index * 100) : 0,
+                      duration: 300 
+                    }}
+                  >
                     <Link 
                       href={item.href} 
                       onClick={onClose}
                       style={{ textDecoration: 'none' }}
                     >
-                      <motion.div
-                        whileHover={{ x: 10 }}
-                        whileTap={{ scale: 0.95 }}
+                      <div
                         style={{
                           padding: '1rem',
                           borderRadius: '12px',
                           cursor: 'pointer',
-                          transition: 'background-color 0.3s ease',
+                          transition: 'all 0.3s ease',
                         }}
                         onMouseEnter={(e) => {
                           e.currentTarget.style.backgroundColor = 'var(--quantum-color-surface-accent-subtle)';
+                          e.currentTarget.style.transform = 'translateX(10px)';
                         }}
                         onMouseLeave={(e) => {
                           e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.transform = 'translateX(0)';
                         }}
                       >
                         <Typography 
@@ -220,15 +186,19 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         >
                           {item.label}
                         </Typography>
-                      </motion.div>
+                      </div>
                     </Link>
-                  </motion.div>
+                  </Animated>
                 ))}
-              </motion.nav>
+              </nav>
 
               {/* Theme Toggle Section */}
-              <motion.div
-                variants={itemVariants}
+              <Animated 
+                animation="slideInRight"
+                config={{ 
+                  delay: isAnimating ? 200 + (NAVIGATION_ITEMS.length * 100) : 0,
+                  duration: 300 
+                }}
                 style={{
                   padding: '2rem',
                   borderTop: '1px solid var(--quantum-color-border-glass)',
@@ -247,11 +217,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   Theme
                 </Typography>
                 <ThemeToggle />
-              </motion.div>
+              </Animated>
 
               {/* CTA Section */}
-              <motion.div
-                variants={itemVariants}
+              <Animated 
+                animation="slideInRight"
+                config={{ 
+                  delay: isAnimating ? 300 + (NAVIGATION_ITEMS.length * 100) : 0,
+                  duration: 300 
+                }}
                 style={{
                   padding: '2rem',
                   borderTop: '1px solid var(--quantum-color-border-glass)',
@@ -267,11 +241,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 >
                   Get Early Access
                 </Button>
-              </motion.div>
+              </Animated>
             </Paper>
-          </motion.div>
+          </div>
         </>
       )}
-    </AnimatePresence>
+    </div>
   );
 }

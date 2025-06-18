@@ -3,18 +3,16 @@
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Button } from '@vritti/quantum-ui/Button';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HOW_IT_WORKS_STEPS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import AnimatedCard from '@/components/ui/AnimatedCard';
 
 export default function HowItWorks() {
   return (
     <div style={{ paddingTop: '80px' }}>
       {/* Hero Section */}
       <section style={{ position: 'relative', overflow: 'hidden' }}>
-        <motion.div
+        <div
           style={{
             position: 'absolute',
             top: 0,
@@ -27,7 +25,7 @@ export default function HowItWorks() {
         />
 
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             background: 'transparent',
             py: 8,
@@ -67,7 +65,7 @@ export default function HowItWorks() {
       {/* Steps Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -88,9 +86,8 @@ export default function HowItWorks() {
                 >
                   {/* Content */}
                   <div style={{ order: index % 2 === 0 ? 1 : 2 }}>
-                    <AnimatedCard
-                      variant="glass"
-                      delay={index * 0.2}
+                    <Paper
+                      variant="feature" glass
                       sx={{
                         p: 4,
                         backgroundColor: 'var(--quantum-color-surface-accent-subtle)',
@@ -156,14 +153,13 @@ export default function HowItWorks() {
                       >
                         {step.details}
                       </Typography>
-                    </AnimatedCard>
+                    </Paper>
                   </div>
 
                   {/* Visual */}
                   <div style={{ order: index % 2 === 0 ? 2 : 1 }}>
-                    <AnimatedCard
-                      variant="glass"
-                      delay={index * 0.2 + 0.1}
+                    <Paper
+                      variant="feature" glass
                       sx={{
                         p: 4,
                         textAlign: 'center',
@@ -191,7 +187,7 @@ export default function HowItWorks() {
                       >
                         Step {step.step} Visualization
                       </Typography>
-                    </AnimatedCard>
+                    </Paper>
                   </div>
                 </div>
               ))}
@@ -203,7 +199,7 @@ export default function HowItWorks() {
       {/* CTA Section */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-brand)',
             py: 8,

@@ -7,7 +7,6 @@ import { TextField } from '@vritti/quantum-ui/TextField';
 import { useState } from 'react';
 import { CONTACT_INFO, FAQ_ITEMS } from '@/lib/constants/content';
 import GradientText from '@/components/ui/GradientText';
-import AnimatedCard from '@/components/ui/AnimatedCard';
 import { useToast } from '@/components/ui/Toast';
 
 export default function Contact() {
@@ -135,7 +134,7 @@ export default function Contact() {
       {/* Hero Section */}
       <section style={{ position: 'relative' }}>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-brand)',
             py: 8,
@@ -176,7 +175,7 @@ export default function Contact() {
       {/* Contact Options */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -193,8 +192,8 @@ export default function Contact() {
               }}
             >
               {/* Contact Form */}
-              <AnimatedCard
-                variant="glass"
+              <Paper
+                variant="feature" glass
                 sx={{
                   p: 4,
                   backgroundColor: 'var(--quantum-color-surface-accent-subtle)',
@@ -274,14 +273,13 @@ export default function Contact() {
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
-              </AnimatedCard>
+              </Paper>
 
               {/* Contact Info & Quick Contact */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {/* WhatsApp Contact */}
-                <AnimatedCard
-                  variant="glass"
-                  delay={0.2}
+                <Paper
+                  variant="feature" glass
                   sx={{
                     p: 4,
                     textAlign: 'center',
@@ -327,12 +325,11 @@ export default function Contact() {
                   >
                     Chat on WhatsApp
                   </Button>
-                </AnimatedCard>
+                </Paper>
 
                 {/* Contact Information */}
-                <AnimatedCard
-                  variant="elevated"
-                  delay={0.4}
+                <Paper
+                  variant="surface"
                   sx={{
                     p: 4,
                     backgroundColor: 'var(--quantum-color-surface-subtle)',
@@ -376,7 +373,7 @@ export default function Contact() {
                       </div>
                     </div>
                   </div>
-                </AnimatedCard>
+                </Paper>
               </div>
             </div>
           </div>
@@ -386,7 +383,7 @@ export default function Contact() {
       {/* FAQ Preview */}
       <section>
         <Paper
-          variant="standard"
+          variant="section"
           sx={{
             backgroundColor: 'var(--quantum-color-background-secondary)',
             py: 8,
@@ -409,10 +406,9 @@ export default function Contact() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
               {FAQ_ITEMS.slice(0, 3).map((faq, index) => (
-                <AnimatedCard
+                <Paper
                   key={index}
-                  variant="elevated"
-                  delay={index * 0.1}
+                  variant="surface"
                   sx={{
                     p: 4,
                     backgroundColor: 'var(--quantum-color-surface-subtle)',
@@ -438,7 +434,7 @@ export default function Contact() {
                   >
                     {faq.answer}
                   </Typography>
-                </AnimatedCard>
+                </Paper>
               ))}
             </div>
 

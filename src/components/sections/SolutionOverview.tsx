@@ -2,36 +2,30 @@
 
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Paper } from '@vritti/quantum-ui/Paper';
-import { motion } from 'framer-motion';
 import { SOLUTION_FEATURES } from '@/lib/constants/content';
 import FeatureCard from '@/components/ui/FeatureCard';
 import GradientText from '@/components/ui/GradientText';
-import { staggerContainer, staggerItem, fadeInUp } from '@/lib/utils/animations';
+import { Animated, Stagger, Continuous, Hover } from '@/components/ui/Animated';
 
 export default function SolutionOverview() {
   return (
     <section style={{ position: 'relative' }}>
       <Paper
-        variant="standard"
-        sx={{
-          backgroundColor: 'var(--quantum-color-background-secondary)',
-          py: 8,
-          px: 2,
-        }}
+        variant="section"
+        fullWidth
       >
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={staggerContainer}
+        <Stagger
+          staggerDelay={0.15}
+          config={{ delay: 200, threshold: 0.1, rootMargin: '-100px' }}
           style={{
             maxWidth: '1200px',
             margin: '0 auto',
           }}
         >
           {/* Section Header */}
-          <motion.div 
-            variants={fadeInUp}
+          <Animated 
+            animation="fadeInUp"
+            config={{ delay: 0 }}
             style={{ textAlign: 'center', marginBottom: '4rem' }}
           >
             <GradientText
@@ -65,11 +59,10 @@ export default function SolutionOverview() {
               Stop juggling multiple tools and spreadsheets. 
               Vritti AI gives you everything you need in one intelligent system.
             </Typography>
-          </motion.div>
+          </Animated>
 
           {/* Features Grid */}
-          <motion.div
-            variants={staggerContainer}
+          <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
@@ -80,26 +73,26 @@ export default function SolutionOverview() {
             }}
           >
             {SOLUTION_FEATURES.map((feature, index) => (
-              <motion.div
-                key={index}
-                variants={staggerItem}
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <FeatureCard
-                  title={feature.title}
-                  description={feature.description}
-                  details={feature.details}
-                  icon={feature.icon}
-                  delay={index * 0.1}
-                />
-              </motion.div>
+              <Hover key={index} animation="hoverLift">
+                <Animated
+                  animation="fadeInUp"
+                  config={{ delay: 150 + (index * 100) }}
+                >
+                  <FeatureCard
+                    title={feature.title}
+                    description={feature.description}
+                    details={feature.details}
+                    icon={feature.icon}
+                  />
+                </Animated>
+              </Hover>
             ))}
-          </motion.div>
+          </div>
 
           {/* Interactive Demo Placeholder */}
-          <motion.div
-            variants={fadeInUp}
+          <Animated 
+            animation="fadeInUp" 
+            config={{ delay: 500 }}
             style={{
               backgroundColor: 'var(--quantum-color-surface-accent-subtle)',
               border: '2px dashed var(--quantum-color-border-accent)',
@@ -111,16 +104,9 @@ export default function SolutionOverview() {
             }}
           >
             {/* Background animation */}
-            <motion.div
-              animate={{
-                backgroundPosition: ['0% 0%', '100% 100%'],
-              }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                repeatType: 'reverse',
-                ease: 'linear',
-              }}
+            <Continuous
+              animation="backgroundFloat"
+              as="div"
               style={{
                 position: 'absolute',
                 top: 0,
@@ -133,16 +119,16 @@ export default function SolutionOverview() {
                 `,
                 zIndex: 0,
               }}
-            />
+            >
+              <div />
+            </Continuous>
 
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <motion.div
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                style={{ fontSize: '4rem', marginBottom: '1rem' }}
-              >
-                🚀
-              </motion.div>
+              <Continuous animation="pulse">
+                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>
+                  🚀
+                </div>
+              </Continuous>
               
               <Typography
                 variant="h3"
@@ -174,24 +160,24 @@ export default function SolutionOverview() {
                 with our interactive demo dashboard.
               </Typography>
 
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: 'var(--quantum-color-text-accent)',
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                }}
-              >
-                See it in action soon
-                <span>→</span>
-              </motion.div>
+              <Continuous animation="float">
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    color: 'var(--quantum-color-text-accent)',
+                    fontSize: '1rem',
+                    fontWeight: 500,
+                  }}
+                >
+                  See it in action soon
+                  <span>→</span>
+                </div>
+              </Continuous>
             </div>
-          </motion.div>
-        </motion.div>
+          </Animated>
+        </Stagger>
       </Paper>
     </section>
   );

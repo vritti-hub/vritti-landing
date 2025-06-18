@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Typography } from "@vritti/quantum-ui/Typography";
-import AnimatedCard from "./AnimatedCard";
+import { Paper } from "@vritti/quantum-ui/Paper";
 
 interface FeatureCardProps {
   title: string;
@@ -22,9 +21,9 @@ export default function FeatureCard({
   onClick,
 }: FeatureCardProps) {
   return (
-    <AnimatedCard
-      variant="glassCard"
-      delay={delay}
+    <Paper
+      variant="feature"
+      glass
       onClick={onClick}
       sx={{
         p: 3,
@@ -34,18 +33,18 @@ export default function FeatureCard({
         flexDirection: "column",
         gap: 2,
         justifyContent: "flex-start",
+        cursor: onClick ? 'pointer' : 'default',
       }}
     >
       {/* Icon */}
-      <motion.div
-        whileHover={{ scale: 1.1, rotate: 5 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+      <div
         style={{
           fontSize: "3rem",
           marginBottom: "1rem",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          transition: "transform 0.3s ease",
         }}
       >
         {icon.endsWith('.svg') ? (
@@ -61,7 +60,7 @@ export default function FeatureCard({
         ) : (
           icon
         )}
-      </motion.div>
+      </div>
 
       {/* Title */}
       <Typography
@@ -107,9 +106,7 @@ export default function FeatureCard({
 
       {/* Hover indicator */}
       {onClick && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
+        <div
           style={{
             marginTop: "auto",
             display: "flex",
@@ -119,14 +116,22 @@ export default function FeatureCard({
             color: "var(--quantum-color-text-onPrimary)",
             fontSize: "0.875rem",
             fontWeight: 500,
+            opacity: 0,
+            transition: "opacity 0.3s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '1';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0';
           }}
         >
           Learn more
-          <motion.span whileHover={{ x: 3 }} transition={{ duration: 0.2 }}>
+          <span style={{ transition: "transform 0.2s ease" }}>
             →
-          </motion.span>
-        </motion.div>
+          </span>
+        </div>
       )}
-    </AnimatedCard>
+    </Paper>
   );
 }

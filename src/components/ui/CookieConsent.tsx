@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
 import { Button } from '@vritti/quantum-ui/Button';
@@ -92,23 +91,21 @@ export default function CookieConsent() {
   if (!isVisible) return null;
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 100, opacity: 0 }}
-        transition={{ duration: 0.3, ease: 'easeOut' }}
-        style={{
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          zIndex: 10000,
-          padding: '1rem',
-        }}
-      >
+    <div
+      style={{
+        position: 'fixed',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 10000,
+        padding: '1rem',
+        transform: isVisible ? 'translateY(0)' : 'translateY(100%)',
+        opacity: isVisible ? 1 : 0,
+        transition: 'all 0.3s ease-out',
+      }}
+    >
         <Paper
-          variant="elevated"
+          variant="surface"
           sx={{
             maxWidth: '1200px',
             mx: 'auto',
@@ -161,15 +158,15 @@ export default function CookieConsent() {
             </Typography>
 
             {/* Cookie preferences details */}
-            <AnimatePresence>
+            <div
+              style={{
+                height: showDetails ? 'auto' : '0',
+                opacity: showDetails ? 1 : 0,
+                overflow: 'hidden',
+                transition: 'all 0.3s ease',
+              }}
+            >
               {showDetails && (
-                <motion.div
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: 'auto', opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ overflow: 'hidden' }}
-                >
                   <div
                     style={{
                       display: 'flex',
@@ -292,9 +289,8 @@ export default function CookieConsent() {
                       </button>
                     </div>
                   </div>
-                </motion.div>
               )}
-            </AnimatePresence>
+            </div>
 
             {/* Action buttons */}
             <div
@@ -360,7 +356,6 @@ export default function CookieConsent() {
             </div>
           </div>
         </Paper>
-      </motion.div>
-    </AnimatePresence>
+    </div>
   );
 }

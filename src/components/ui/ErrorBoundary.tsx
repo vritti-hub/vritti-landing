@@ -50,7 +50,7 @@ export default class ErrorBoundary extends Component<Props, State> {
 
       return (
         <Paper
-          variant="elevated"
+          variant="surface"
           sx={{
             p: 4,
             m: 2,

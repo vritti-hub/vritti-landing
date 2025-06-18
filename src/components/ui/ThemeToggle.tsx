@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTheme } from "@vritti/quantum-ui";
 import { Button } from "@vritti/quantum-ui/Button";
 
@@ -35,10 +34,22 @@ export default function ThemeToggle() {
   const isDark = colorScheme === "dark";
 
   return (
-    <motion.div
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+    <div
       style={{ position: "relative" }}
+      onMouseEnter={(e) => {
+        const tooltip = e.currentTarget.querySelector('[data-tooltip]') as HTMLElement;
+        if (tooltip) {
+          tooltip.style.opacity = '1';
+          tooltip.style.transform = 'translateX(-50%) translateY(0px)';
+        }
+      }}
+      onMouseLeave={(e) => {
+        const tooltip = e.currentTarget.querySelector('[data-tooltip]') as HTMLElement;
+        if (tooltip) {
+          tooltip.style.opacity = '0';
+          tooltip.style.transform = 'translateX(-50%) translateY(10px)';
+        }
+      }}
     >
       <Button
         intent="ghost"
@@ -62,36 +73,28 @@ export default function ThemeToggle() {
           transition: "all 0.3s ease",
         }}
       >
-        <motion.div
-          initial={false}
-          animate={{
-            rotate: isDark ? 180 : 0,
-            scale: isDark ? 0.8 : 1,
-          }}
-          transition={{
-            duration: 0.5,
-            ease: "easeInOut",
-          }}
+        <div
           style={{
             fontSize: "1.25rem",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            transform: `rotate(${isDark ? 180 : 0}deg) scale(${isDark ? 0.8 : 1})`,
+            transition: "transform 0.5s ease-in-out",
           }}
         >
           {isDark ? "☀️" : "🌙"}
-        </motion.div>
+        </div>
       </Button>
 
       {/* Tooltip */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileHover={{ opacity: 1, y: 0 }}
+      <div
+        data-tooltip="true"
         style={{
           position: "absolute",
           top: "100%",
           left: "50%",
-          transform: "translateX(-50%)",
+          transform: "translateX(-50%) translateY(10px)",
           marginTop: "8px",
           padding: "6px 12px",
           backgroundColor: "var(--quantum-color-surface-elevated)",
@@ -101,6 +104,8 @@ export default function ThemeToggle() {
           whiteSpace: "nowrap",
           pointerEvents: "none",
           zIndex: 1000,
+          opacity: 0,
+          transition: "opacity 0.3s ease, transform 0.3s ease",
         }}
       >
         Switch to {isDark ? "light" : "dark"} mode
@@ -117,7 +122,7 @@ export default function ThemeToggle() {
             borderBottom: "4px solid rgba(0, 0, 0, 0.8)",
           }}
         />
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
