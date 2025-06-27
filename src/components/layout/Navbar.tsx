@@ -4,6 +4,7 @@ import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
 import MobileMenu from './MobileMenu';
@@ -59,16 +60,13 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" style={{ textDecoration: 'none' }}>
               <Hover animation="hoverScale">
-                <Typography 
-                  variant="h3" 
-                  intent="brand"
-                  sx={{
-                    fontWeight: 700,
-                    fontSize: { xs: '1.5rem', md: '1.75rem' },
-                  }}
-                >
-                  {SITE_CONFIG.name}
-                </Typography>
+                <Image
+                  src="/vritti-logo.png"
+                  alt="Vritti Logo"
+                  width={100}
+                  height={40}
+                  priority
+                />
               </Hover>
             </Link>
 
@@ -182,4 +180,3 @@ export default function Navbar() {
     </>
   );
 }
-

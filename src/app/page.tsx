@@ -10,7 +10,7 @@ const organizationSchema = {
   "name": "Vritti AI",
   "description": "AI Business Operating System for Small Businesses",
   "url": "https://vritti.ai",
-  "logo": "https://vritti.ai/logo.png",
+  "logo": "https://vritti.ai/vritti-full-logo.png",
   "foundingDate": "2024",
   "founder": {
     "@type": "Person",
