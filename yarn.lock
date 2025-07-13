@@ -891,10 +891,8 @@
   resolved "https://registry.yarnpkg.com/@unrs/resolver-binding-win32-x64-msvc/-/resolver-binding-win32-x64-msvc-1.7.11.tgz#18364383f30140cc8e4a012fad8f9edef22d564a"
   integrity sha512-7L8NdsQlCJ8T106Gbz/AjzM4QKWVsoQbKpB9bMBGcIZswUuAnJMHpvbqGW3RBqLHCIwX4XZ5fxSBHEFcK2h9wA==
 
-"@vritti/quantum-ui@0.1.1":
+"@vritti/quantum-ui@file:../quantum-ui":
   version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@vritti/quantum-ui/-/quantum-ui-0.1.1.tgz#7c70f995c56bbeb070586d23ad2ed4ac20d7a8ca"
-  integrity sha512-0cKpbcOFKJwDA29j72QVuHxuPq3IJWym7zmrw92XUbMBEhXo9S08iZ9PYm7Bu9ExrQ0+2313IKHfs3or6Qx4/g==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"

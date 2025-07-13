@@ -1,12 +1,13 @@
 'use client';
 
+import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
 import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
 import Link from 'next/link';
-import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
-import ThemeToggle from '@/components/ui/ThemeToggle';
-import { Animated, Stagger, Hover } from '@/components/ui/Animated';
+
+import { Animated, Hover } from '@/components/ui/Animated';
+import { ThemeToggle } from '@vritti/quantum-ui/ThemeToggle';
 import { useEffect, useState } from 'react';
 
 interface MobileMenuProps {
@@ -69,7 +70,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
             }}
           >
             <Paper
-              variant="minimal"
+              variant='minimal'
               nav
               sx={{
                 height: '100%',
@@ -89,8 +90,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Typography 
-                  variant="h4" 
+                <Typography
+                  variant='h4'
                   sx={{
                     background: 'var(--quantum-color-text-brand-gradient)',
                     WebkitBackgroundClip: 'text',
@@ -102,7 +103,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   {SITE_CONFIG.name}
                 </Typography>
 
-                <Hover animation="hoverScale">
+                <Hover animation='hoverScale'>
                   <button
                     onClick={onClose}
                     style={{
@@ -114,20 +115,20 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}
-                    aria-label="Close menu"
+                    aria-label='Close menu'
                   >
                     <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                      width='24'
+                      height='24'
+                      viewBox='0 0 24 24'
+                      fill='none'
+                      stroke='currentColor'
+                      strokeWidth='2'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                     >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                      <line x1='18' y1='6' x2='6' y2='18'></line>
+                      <line x1='6' y1='6' x2='18' y2='18'></line>
                     </svg>
                   </button>
                 </Hover>
@@ -144,19 +145,15 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 }}
               >
                 {NAVIGATION_ITEMS.map((item, index) => (
-                  <Animated 
-                    key={item.href} 
-                    animation="slideInRight"
-                    config={{ 
-                      delay: isAnimating ? 200 + (index * 100) : 0,
-                      duration: 300 
+                  <Animated
+                    key={item.href}
+                    animation='slideInRight'
+                    config={{
+                      delay: isAnimating ? 200 + index * 100 : 0,
+                      duration: 300,
                     }}
                   >
-                    <Link 
-                      href={item.href} 
-                      onClick={onClose}
-                      style={{ textDecoration: 'none' }}
-                    >
+                    <Link href={item.href} onClick={onClose} style={{ textDecoration: 'none' }}>
                       <div
                         style={{
                           padding: '1rem',
@@ -173,8 +170,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                           e.currentTarget.style.transform = 'translateX(0)';
                         }}
                       >
-                        <Typography 
-                          variant="h4"
+                        <Typography
+                          variant='h4'
                           sx={{
                             color: 'text.primary',
                             fontWeight: 600,
@@ -193,11 +190,11 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </nav>
 
               {/* Theme Toggle Section */}
-              <Animated 
-                animation="slideInRight"
-                config={{ 
-                  delay: isAnimating ? 200 + (NAVIGATION_ITEMS.length * 100) : 0,
-                  duration: 300 
+              <Animated
+                animation='slideInRight'
+                config={{
+                  delay: isAnimating ? 200 + NAVIGATION_ITEMS.length * 100 : 0,
+                  duration: 300,
                 }}
                 style={{
                   padding: '2rem',
@@ -207,8 +204,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   justifyContent: 'space-between',
                 }}
               >
-                <Typography 
-                  variant="h4"
+                <Typography
+                  variant='h4'
                   sx={{
                     color: 'var(--quantum-color-text-on-surface)',
                     fontWeight: 600,
@@ -220,25 +217,18 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </Animated>
 
               {/* CTA Section */}
-              <Animated 
-                animation="slideInRight"
-                config={{ 
-                  delay: isAnimating ? 300 + (NAVIGATION_ITEMS.length * 100) : 0,
-                  duration: 300 
+              <Animated
+                animation='slideInRight'
+                config={{
+                  delay: isAnimating ? 300 + NAVIGATION_ITEMS.length * 100 : 0,
+                  duration: 300,
                 }}
                 style={{
                   padding: '2rem',
                   borderTop: '1px solid var(--quantum-color-border-glass)',
                 }}
               >
-                <Button 
-                  intent="primary" 
-                  size="large"
-                  fullWidth
-                  component={Link}
-                  href="/contact"
-                  onClick={onClose}
-                >
+                <Button intent='primary' size='large' fullWidth component={Link} href='/contact' onClick={onClose}>
                   Get Early Access
                 </Button>
               </Animated>

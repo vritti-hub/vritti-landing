@@ -1,16 +1,17 @@
 'use client';
 
+import ResponsiveWrapper from '@/components/ui/ResponsiveWrapper';
+import { NAVIGATION_ITEMS } from '@/lib/constants/content';
 import { Button } from '@vritti/quantum-ui/Button';
 import { Paper } from '@vritti/quantum-ui/Paper';
 import { Typography } from '@vritti/quantum-ui/Typography';
-import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants/content';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import MobileMenu from './MobileMenu';
-import ResponsiveWrapper from '@/components/ui/ResponsiveWrapper';
-import ThemeToggle from '@/components/ui/ThemeToggle';
+
 import { Hover } from '@/components/ui/Animated';
+import { ThemeToggle } from '@vritti/quantum-ui/ThemeToggle';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -37,20 +38,20 @@ export default function Navbar() {
           borderBottom: '1px solid var(--quantum-color-border-glass)',
         }}
       >
-        <Paper 
-          variant="minimal"
+        <Paper
+          variant='minimal'
           nav
-          sx={{ 
+          sx={{
             borderRadius: 0,
             backgroundColor: isScrolled ? 'var(--quantum-color-surface-glass)' : 'transparent',
             backdropFilter: isScrolled ? 'blur(20px)' : 'none',
             transition: 'all 0.3s ease',
           }}
         >
-          <div 
-            style={{ 
-              maxWidth: '1200px', 
-              margin: '0 auto', 
+          <div
+            style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
               padding: '1rem 2rem',
               display: 'flex',
               alignItems: 'center',
@@ -58,15 +59,9 @@ export default function Navbar() {
             }}
           >
             {/* Logo */}
-            <Link href="/" style={{ textDecoration: 'none' }}>
-              <Hover animation="hoverScale">
-                <Image
-                  src="/vritti-logo.png"
-                  alt="Vritti Logo"
-                  width={100}
-                  height={40}
-                  priority
-                />
+            <Link href='/' style={{ textDecoration: 'none' }}>
+              <Hover animation='hoverScale'>
+                <Image src='/vritti-logo.png' alt='Vritti Logo' width={100} height={40} priority />
               </Hover>
             </Link>
 
@@ -87,8 +82,8 @@ export default function Navbar() {
                           e.currentTarget.style.transform = 'translateY(0)';
                         }}
                       >
-                        <Typography 
-                          variant="body1"
+                        <Typography
+                          variant='body1'
                           sx={{
                             color: 'text.primary',
                             fontWeight: 500,
@@ -112,13 +107,8 @@ export default function Navbar() {
 
               {/* CTA Button */}
               <ResponsiveWrapper breakpoint={768} showAbove={true}>
-                <Hover animation="hoverScale">
-                  <Button 
-                    intent="primary" 
-                    size="medium"
-                    component={Link}
-                    href="/contact"
-                  >
+                <Hover animation='hoverScale'>
+                  <Button intent='primary' size='medium' component={Link} href='/contact'>
                     Get Early Access
                   </Button>
                 </Hover>
@@ -126,7 +116,7 @@ export default function Navbar() {
 
               {/* Mobile Menu Button */}
               <ResponsiveWrapper breakpoint={768} showAbove={false}>
-                <Hover animation="hoverScale">
+                <Hover animation='hoverScale'>
                   <button
                     onClick={() => setIsOpen(true)}
                     style={{
@@ -138,9 +128,9 @@ export default function Navbar() {
                       cursor: 'pointer',
                       padding: '8px',
                     }}
-                    aria-label="Open menu"
+                    aria-label='Open menu'
                   >
-                    <span 
+                    <span
                       style={{
                         width: '24px',
                         height: '2px',
@@ -149,7 +139,7 @@ export default function Navbar() {
                         transition: 'all 0.3s ease',
                       }}
                     />
-                    <span 
+                    <span
                       style={{
                         width: '24px',
                         height: '2px',
@@ -158,7 +148,7 @@ export default function Navbar() {
                         transition: 'all 0.3s ease',
                       }}
                     />
-                    <span 
+                    <span
                       style={{
                         width: '24px',
                         height: '2px',
